@@ -2,11 +2,17 @@
   - name: Installing tomcat
     hosts: tomcat-client
     tasks:
+    - name: Create group for tomcat
+      group:
+        name: tomcat
+        state: present
+
     - name: Create the user
       become: yes
       user:
         name: tomcat
         state: present
+
     - name: Create a Directory /opt/tomcat
       become: yes
       file:
@@ -52,7 +58,7 @@
     - name: copy the tomcat.service file
       copy:
         src: files/tomcat.service
-        dest: /etc/systemd/system/
+        dest: /etc/systemd/system/tomcat.service
     - name: Start and enable tomcat
       systemd:
         name: tomcat
