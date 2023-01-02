@@ -13,6 +13,8 @@
         path: /opt/tomcat
         state: directory
         mode: 0755
+        owner: tomcat
+        group: tomcat
     - name: Update the System Packages
       apt:
         upgrade: yes
