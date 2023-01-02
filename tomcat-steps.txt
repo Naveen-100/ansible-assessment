@@ -1,0 +1,53 @@
+Step 1 — Installing Tomcat
+---------------------------------------------------
+### Adding user tomcat
+sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
+---
+###  update os
+sudo apt update
+---
+###  install jdk
+sudo apt install default-jdk
+--- 
+###  create directory /opt/tomcat
+---
+###  download & unzip tomcat
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz
+sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
+---
+### grant ownership to tomcat user
+sudo chown -R tomcat:tomcat /opt/tomcat/
+sudo chmod -R u+x /opt/tomcat/bin
+---------------------------------------------------
+Step 2 — Configuring Admin Users
+---------------------------------------------------
+edit tomcat-users.xml
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+---
+remove restriction on manager page
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+### uncomment value
+---------------------------------------------------
+Step 3 — Creating a systemd service
+---------------------------------------------------
+sudo update-java-alternatives -l
+---
+### create tomcate.service file
+sudo nano /etc/systemd/system/tomcat.service
+---
+### Reload systemd
+sudo systemctl daemon-reload
+---
+### start tomcat
+sudo systemctl daemon-reload
+---
+### check status of tomcat
+sudo systemctl status tomcat
+---
+### allow tomcat to run on background
+sudo systemctl enable tomcat
+---------------------------------------------------
+Step 4 — Accessing the Web Interface
+---------------------------------------------------
+allow port 8080 in client
+open public ip with port 8080
