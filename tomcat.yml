@@ -26,7 +26,7 @@
     - name: Download Tomcat using unarchive
       become: yes
       unarchive:
-        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz
+        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
         dest: /opt/tomcat
         mode: 0755
         remote_src: yes
