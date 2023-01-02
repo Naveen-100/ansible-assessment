@@ -1,0 +1,25 @@
+---
+  - name: Installing tomcat
+    hosts: tomcat-client
+    tasks:
+    - name: Create the user
+      become: yes
+      user:
+        name: tomcat
+        state: present
+    - name: Create a Directory /opt/tomcat
+      become: yes
+      file:
+        path: /opt/tomcat
+        state: directory
+        mode: 0755
+        owner: tomcat
+        group: tomcat
+    - name: Update the System Packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+    - name: Install JAVA
+      apt:
+        name: default-jdk
+        state: present
