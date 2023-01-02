@@ -13,8 +13,6 @@
         path: /opt/tomcat
         state: directory
         mode: 0755
-        owner: tomcat
-        group: tomcat
     - name: Update the System Packages
       apt:
         upgrade: yes
@@ -23,3 +21,8 @@
       apt:
         name: default-jdk
         state: present
+    - name: Download foo.conf
+      ansible.builtin.get_url:
+        url: wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz
+        dest: /tmp
+        mode: '0440'
