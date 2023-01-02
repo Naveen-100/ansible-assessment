@@ -37,6 +37,10 @@
         mode: "u+x"
         recurse: yes
         state: directory
+    - name: edit tomcat users
+      copy:
+        src: ./files/tomcatusers.xml
+        dest: /opt/tomcat/conf/tomcat-users.xml
     - name: copy the tomcat.service file
       copy:
         src: ./files/tomcat.service
