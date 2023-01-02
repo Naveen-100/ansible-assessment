@@ -39,13 +39,12 @@
         state: directory
     - name: edit tomcat users
       copy:
-        src: ./files/tomcatusers.xml
+        src: files/tomcat-users.xml
         dest: /opt/tomcat/conf/tomcat-users.xml
     - name: copy the tomcat.service file
       copy:
-        src: ./files/tomcat.service
+        src: files/tomcat.service
         dest: /etc/systemd/system/
-        mode: 0755
     - name: Start and enable tomcat
       systemd:
         name: tomcat
