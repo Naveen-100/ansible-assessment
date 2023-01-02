@@ -1,8 +1,6 @@
 ---
   - name: Installing tomcat
     hosts: tomcat-client
-    vars:
-      download_url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
     tasks:
     - name: Create the user
       become: yes
@@ -25,19 +23,12 @@
       apt:
         name: default-jdk
         state: present
-    - name: Download Tomcat using unarchive
-      become: yes
+    - name: download & unarchive tomcat10 
       unarchive:
-        src: "{{download_url}}"
+        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
         dest: /opt/tomcat
-        mode: 0755
+        remote_src: yes
         extra_opts: [--strip-components=1]
-        remote_src: yes  
-    - name: Move files to the /opt/tomcat directory
-      become: yes
-      become_user: tomcat
-      shell: "tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat"
-
     - name: Change ownership of tomcat directory
       file:
         path: /opt/tomcat10
