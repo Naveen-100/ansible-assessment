@@ -31,7 +31,16 @@
         src: "{{download_url}}"
         dest: /opt/tomcat
         mode: 0755
+        extra_opts: [--strip-components=1]
         remote_src: yes    
+    - name: Change ownership of tomcat directory
+      file:
+        path: /opt/tomcat10
+        owner: tomcat
+        group: tomcat
+        mode: "u+rwx,g+rx,o=rx"
+        recurse: yes
+        state: directory
     - name: Move files to the /opt/tomcat directory
       become: yes
       become_user: tomcat
