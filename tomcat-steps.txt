@@ -26,7 +26,7 @@ sudo nano /opt/tomcat/conf/tomcat-users.xml
 ---
 remove restriction on manager page
 sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
-### uncomment value
+### comment value
 ---------------------------------------------------
 Step 3 — Creating a systemd service
 ---------------------------------------------------

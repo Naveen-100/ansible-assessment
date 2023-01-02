@@ -41,6 +41,14 @@
       copy:
         src: files/tomcat-users.xml
         dest: /opt/tomcat/conf/tomcat-users.xml
+    - name: edit tomcat manager
+      copy:
+        src: files/context.xml
+        dest: /opt/tomcat/webapps/manager/META-INF/context.xml
+    - name: edit tomcat host-manager
+      copy:
+        src: files/host-manager.xml
+        dest: /opt/tomcat/webapps/host-manager/META-INF/context.xml
     - name: copy the tomcat.service file
       copy:
         src: files/tomcat.service
